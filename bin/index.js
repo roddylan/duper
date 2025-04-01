@@ -26,7 +26,9 @@ try {
     const src = options["f"];
     if (options.hasOwnProperty("name")) {
         let dest = options["name"];
-        fs.copyFile(src, dest);
+        fs.copyFile(src, dest, (err) => {
+            if (err) throw err;
+        });
 
     } else {
         fs.realpath(src, (err, res) => {
