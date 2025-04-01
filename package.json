@@ -1,0 +1,19 @@
+{
+  "name": "duper",
+  "version": "1.0.0",
+  "description": "create named duplicates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roddylan/duper.git"
+  },
+  "author": "roddy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roddylan/duper/issues"
+  },
+  "homepage": "https://github.com/roddylan/duper#readme"
+}
