@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/roddylan/duper/issues"
   },
-  "homepage": "https://github.com/roddylan/duper#readme"
+  "homepage": "https://github.com/roddylan/duper#readme",
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
 }
