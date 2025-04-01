@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require("yargs");
+const fs = require('node:fs');
 
 // TODO: make file positional
 const options = yargs
@@ -15,4 +16,27 @@ const options = yargs
     .argv;
 
 
-console.log(options)
+try {
+    fs.access(options["f"], fs.constants.F_OK, (err) => {
+        if (err) {
+            console.error(err);
+        }
+    });
+
+    let file = fs.open(options["f"], "r", (err, fd) => {
+        if (err) {
+            throw err;
+        }
+        try {
+            console.log(fd);
+        } finally {
+            fs.close(fd, (err) => {
+                if (err) {
+                    throw err;
+                }
+            });
+        }
+    });
+} catch (e) {
+    console.error(e);
+}
