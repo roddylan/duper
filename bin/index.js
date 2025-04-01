@@ -2,6 +2,7 @@
 
 const yargs = require("yargs");
 const fs = require('node:fs');
+const path = require('node:path');
 
 // TODO: make file positional
 const options = yargs
@@ -22,21 +23,26 @@ try {
             console.error(err);
         }
     });
+    const src = options["f"];
+    if (options.hasOwnProperty("name")) {
+        let dest = options["name"];
+        fs.copyFile(src, dest);
 
-    let file = fs.open(options["f"], "r", (err, fd) => {
-        if (err) {
-            throw err;
-        }
-        try {
-            console.log(fd);
-        } finally {
-            fs.close(fd, (err) => {
-                if (err) {
-                    throw err;
-                }
+    } else {
+        fs.realpath(src, (err, res) => {
+            if (err) throw err;
+            
+            let po = path.parse(res);
+            po.name = `${po.name} copy`;
+            po.base = `${po.name}${po.ext}`;
+            fs.copyFile(src, path.format(po), (err) => {
+                if (err) throw err;
             });
-        }
-    });
+        });
+
+    }
+
+    // fs.copyFile()
 } catch (e) {
     console.error(e);
 }
