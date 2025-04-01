@@ -43,8 +43,6 @@ try {
         });
 
     }
-
-    // fs.copyFile()
 } catch (e) {
     console.error(e);
 }
